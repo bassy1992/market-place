@@ -1,0 +1,11 @@
+{
+  "title": "AutoGhana",
+  "description": "Connects car buyers and dealers across Ghana with a premium marketplace to search, browse, and list vehicles using tailored filters and trusted listings.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}
