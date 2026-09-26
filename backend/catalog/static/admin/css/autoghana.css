@@ -21,15 +21,26 @@ body.login #content-main {
 }
 
 /* Logo image rendered by jazzmin login_logo */
-body.login .login-logo img,
-body.login .navbar-brand img {
-    width: 72px !important;
-    height: 72px !important;
+body.login .login-logo {
+    margin-bottom: 16px !important;
+}
+
+body.login .login-logo h1 {
+    font-size: 0 !important;
+    line-height: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+body.login .login-logo h1 picture img,
+body.login .login-logo img {
+    width: 64px !important;
+    height: 64px !important;
     object-fit: cover !important;
-    border-radius: 12px !important;
+    border-radius: 10px !important;
     box-shadow: 0 4px 16px rgba(192,0,0,0.35) !important;
-    display: block;
-    margin: 0 auto 8px;
+    display: block !important;
+    margin: 0 auto !important;
 }
 
 body.login h1 {
