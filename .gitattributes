@@ -3,13 +3,13 @@
 
 # Project logo — exempt from LFS, stored as a regular git object
 frontend/public/mlogo.jpeg !filter !diff !merge text
+backend/catalog/static/admin/img/vc.jpeg !filter !diff !merge text
 
 # ---------------------------------------------------------------------------
 # Images & Graphics
 # ---------------------------------------------------------------------------
 *.png                filter=lfs diff=lfs merge=lfs -text
 *.jpg                filter=lfs diff=lfs merge=lfs -text
-*.jpeg               filter=lfs diff=lfs merge=lfs -text
 *.gif                filter=lfs diff=lfs merge=lfs -text
 *.bmp                filter=lfs diff=lfs merge=lfs -text
 *.tiff               filter=lfs diff=lfs merge=lfs -text
