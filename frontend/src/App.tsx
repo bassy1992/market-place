@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import mlogo from './mlogo'
 
 const NAV_LINKS = ['Buy a Car', 'Sell a Car', 'Dealers', 'About']
 
@@ -437,13 +438,7 @@ function ProductDetailPage({ car, dealers, onBack }: { car: Car; dealers: Dealer
             </button>
 
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                  <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-              </div>
+              <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
               <span className="font-display text-xl font-bold text-white tracking-tight">
                 Auto<span style={{ color: '#c9a84c' }}>Ghana</span>
               </span>
@@ -656,13 +651,7 @@ function ProductDetailPage({ car, dealers, onBack }: { car: Car; dealers: Dealer
         <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                  <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-              </div>
+              <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
               <span className="font-display text-xl font-bold text-white">Auto<span style={{ color: '#c9a84c' }}>Ghana</span></span>
             </div>
             <div className="text-sm text-gray-400">© 2026 AutoGhana Ltd. All rights reserved.</div>
@@ -805,13 +794,7 @@ function DealerDetailPage({ dealer, cars, onBack, onViewCar }: { dealer: Dealer;
             </button>
 
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                  <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-              </div>
+              <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
               <span className="font-display text-xl font-bold text-white tracking-tight">
                 Auto<span style={{ color: '#c9a84c' }}>Ghana</span>
               </span>
@@ -950,13 +933,7 @@ function DealerDetailPage({ dealer, cars, onBack, onViewCar }: { dealer: Dealer;
         <div className="max-w-7xl mx-auto px-4 py-10 sm:px-6 lg:px-8">
           <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                  <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-              </div>
+              <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
               <span className="font-display text-xl font-bold text-white">Auto<span style={{ color: '#c9a84c' }}>Ghana</span></span>
             </div>
             <div className="text-sm text-gray-400">© 2026 AutoGhana Ltd. All rights reserved.</div>
@@ -1096,13 +1073,7 @@ function LoginPage({ onBack, onLogin, onCreateAccount }: { onBack: () => void; o
             Back to marketplace
           </button>
           <div className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-lg" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-              <svg viewBox="0 0 24 24" fill="none" className="h-5 w-5" stroke="#0d1b2a" strokeWidth="2.5">
-                <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                <circle cx="7" cy="17" r="2" />
-                <circle cx="17" cy="17" r="2" />
-              </svg>
-            </div>
+            <img src={mlogo} alt="AutoGhana" className="h-9 w-9 rounded-lg object-cover" />
             <span className="font-display text-xl font-bold tracking-tight text-white">Auto<span style={{ color: '#c9a84c' }}>Ghana</span></span>
           </div>
           <div className="w-32" aria-hidden="true" />
@@ -1597,13 +1568,7 @@ export default function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16 lg:h-20">
             <div className="flex items-center gap-2.5 cursor-pointer">
-              <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                  <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                  <circle cx="7" cy="17" r="2" />
-                  <circle cx="17" cy="17" r="2" />
-                </svg>
-              </div>
+              <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
               <span className="font-display text-xl font-bold text-white tracking-tight">
                 Auto<span style={{ color: '#c9a84c' }}>Ghana</span>
               </span>
@@ -1996,13 +1961,7 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 lg:gap-12 mb-14">
             <div className="lg:col-span-2">
               <div className="flex items-center gap-2.5 mb-4">
-                <div className="w-9 h-9 rounded-lg flex items-center justify-center" style={{ background: 'linear-gradient(135deg, #c9a84c, #e8c96d)' }}>
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5" stroke="#0d1b2a" strokeWidth="2.5">
-                    <path d="M5 17H3a2 2 0 0 1-2-2v-4l4-5h12l4 5v4a2 2 0 0 1-2 2h-2" />
-                    <circle cx="7" cy="17" r="2" />
-                    <circle cx="17" cy="17" r="2" />
-                  </svg>
-                </div>
+                <img src={mlogo} alt="AutoGhana" className="w-9 h-9 rounded-lg object-cover" />
                 <span className="font-display text-xl font-bold text-white">Auto<span style={{ color: '#c9a84c' }}>Ghana</span></span>
               </div>
               <p className="text-sm text-gray-400 leading-relaxed max-w-xs">
