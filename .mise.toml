@@ -1,3 +1,7 @@
 [tools]
 node = "22"
-"npm:pnpm" = "10.34.3"
+"npm:pnpm" = "10.20.0"
+
+[settings]
+python.github_attestations = false
+npm.trust_policy_excludes = []
