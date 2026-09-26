@@ -1,0 +1,326 @@
+[
+  {
+    "model": "catalog.dealer",
+    "pk": 1,
+    "fields": {
+      "owner": null,
+      "name": "Prestige Motors Ghana",
+      "location": "East Legon, Accra",
+      "cars": 3,
+      "verified": true,
+      "initials": "PM",
+      "color": "#c9a84c",
+      "phone": "+233 24 123 4567",
+      "email": "sales@prestigemotorsgh.com",
+      "rating": 4.9,
+      "response": "Under 1 hour",
+      "description": "Prestige Motors Ghana is a trusted premium dealership serving Accra families and executives looking for high-quality vehicles with polished service and transparent pricing.",
+      "specialties": ["Luxury sedans", "Family SUVs", "Certified pre-owned"],
+      "hours": "Mon - Sat · 8:00 AM - 7:00 PM",
+      "logo": ""
+    }
+  },
+  {
+    "model": "catalog.dealer",
+    "pk": 2,
+    "fields": {
+      "owner": null,
+      "name": "Ashanti Auto Hub",
+      "location": "Ahodwo, Kumasi",
+      "cars": 3,
+      "verified": true,
+      "initials": "AA",
+      "color": "#0d1b2a",
+      "phone": "+233 20 555 2244",
+      "email": "hello@ashantiautohub.com",
+      "rating": 4.8,
+      "response": "Within 2 hours",
+      "description": "Ashanti Auto Hub is known for practical, dependable vehicles and honest advice for buyers across Kumasi and the Ashanti Region.",
+      "specialties": ["Pickup trucks", "Family SUVs", "Commercial vehicles"],
+      "hours": "Mon - Sat · 7:30 AM - 6:30 PM",
+      "logo": ""
+    }
+  },
+  {
+    "model": "catalog.dealer",
+    "pk": 3,
+    "fields": {
+      "owner": null,
+      "name": "Capitol Auto Sales",
+      "location": "Airport Hills, Accra",
+      "cars": 3,
+      "verified": true,
+      "initials": "CA",
+      "color": "#1e3a5f",
+      "phone": "+233 26 988 7733",
+      "email": "info@capitolautosalesgh.com",
+      "rating": 5.0,
+      "response": "Usually in under 30 minutes",
+      "description": "Capitol Auto Sales carries a broad selection of premium and everyday vehicles for busy city drivers and growing families in Accra.",
+      "specialties": ["Luxury crossovers", "Hybrid cars", "Executive sedans"],
+      "hours": "Mon - Sun · 9:00 AM - 8:00 PM",
+      "logo": ""
+    }
+  },
+  {
+    "model": "catalog.dealer",
+    "pk": 4,
+    "fields": {
+      "owner": null,
+      "name": "Gold Coast Motors",
+      "location": "Labone, Accra",
+      "cars": 3,
+      "verified": false,
+      "initials": "GC",
+      "color": "#8b5e0a",
+      "phone": "+233 27 776 1122",
+      "email": "cars@goldcoastmotorsgh.com",
+      "rating": 4.6,
+      "response": "Within 4 hours",
+      "description": "Gold Coast Motors offers accessible vehicles for buyers seeking dependable options at competitive prices with a friendly local approach.",
+      "specialties": ["Budget cars", "Used hatchbacks", "Entry-level SUVs"],
+      "hours": "Mon - Sat · 8:30 AM - 6:00 PM",
+      "logo": ""
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 1,
+    "fields": {
+      "make": "Mercedes-Benz",
+      "model": "C-Class",
+      "year": 2022,
+      "price": "GH\u20b5 285,000",
+      "mileage": "18,400 km",
+      "location": "East Legon, Accra",
+      "dealer": "Prestige Motors Ghana",
+      "condition": "Foreign Used",
+      "overview": "A meticulously maintained C-Class with full service history. Leather interior, sunroof, and AMG styling pack. Perfect for Accra executives.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L Turbo 4-cyl",
+      "color": "Obsidian Black",
+      "image": "https://images.unsplash.com/photo-1610099610040-ab19f3a5ec35?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 2,
+    "fields": {
+      "make": "BMW",
+      "model": "3 Series",
+      "year": 2021,
+      "price": "GH\u20b5 310,000",
+      "mileage": "22,100 km",
+      "location": "East Legon, Accra",
+      "dealer": "Prestige Motors Ghana",
+      "condition": "Foreign Used",
+      "overview": "Sporty and refined, this 330i comes loaded with BMW Live Cockpit, heated seats, and a wireless charging pad. One careful owner from new.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L TwinPower Turbo",
+      "color": "Alpine White",
+      "image": "https://images.unsplash.com/photo-1555215695-3004980ad54e?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 3,
+    "fields": {
+      "make": "Lexus",
+      "model": "IS 300",
+      "year": 2023,
+      "price": "GH\u20b5 340,000",
+      "mileage": "6,800 km",
+      "location": "East Legon, Accra",
+      "dealer": "Prestige Motors Ghana",
+      "condition": "Brand New",
+      "overview": "Fresh import with factory warranty intact. Mark Levinson audio, 12.3-inch touchscreen, and adaptive suspension make every drive a pleasure.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L Turbo 4-cyl",
+      "color": "Atomic Silver",
+      "image": "https://images.unsplash.com/photo-1569516449771-41c89ee14ca3?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 4,
+    "fields": {
+      "make": "Toyota",
+      "model": "Land Cruiser Prado",
+      "year": 2021,
+      "price": "GH\u20b5 420,000",
+      "mileage": "32,000 km",
+      "location": "Ahodwo, Kumasi",
+      "dealer": "Ashanti Auto Hub",
+      "condition": "Foreign Used",
+      "overview": "A rugged and capable Prado in excellent condition. 3rd-row seating, full leather, factory fitted bull bar and off-road tyres. Ready for Ghana roads.",
+      "fuel": "Diesel",
+      "transmission": "Automatic",
+      "engine": "2.8L 4-cyl Diesel",
+      "color": "Pearl White",
+      "image": "https://images.unsplash.com/photo-1624085568108-36410cfe4d24?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 5,
+    "fields": {
+      "make": "Ford",
+      "model": "Ranger Wildtrak",
+      "year": 2020,
+      "price": "GH\u20b5 265,000",
+      "mileage": "48,200 km",
+      "location": "Ahodwo, Kumasi",
+      "dealer": "Ashanti Auto Hub",
+      "condition": "Foreign Used",
+      "overview": "Dual-cab workhorse with bi-xenon headlights, sync 3 infotainment, and a 2-inch lift kit. Ideal for business and weekend adventures.",
+      "fuel": "Diesel",
+      "transmission": "Automatic",
+      "engine": "2.0L EcoBlue Bi-Turbo",
+      "color": "Conquer Grey",
+      "image": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 6,
+    "fields": {
+      "make": "Hyundai",
+      "model": "Tucson",
+      "year": 2023,
+      "price": "GH\u20b5 235,000",
+      "mileage": "4,500 km",
+      "location": "Ahodwo, Kumasi",
+      "dealer": "Ashanti Auto Hub",
+      "condition": "Brand New",
+      "overview": "Latest-generation Tucson with panoramic sunroof, BOSE sound system, and Hyundai SmartSense safety suite. Under manufacturer warranty.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "1.6L Turbo GDi",
+      "color": "Amazon Grey",
+      "image": "https://images.unsplash.com/photo-1617814076367-b759c7d7e738?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 7,
+    "fields": {
+      "make": "Lexus",
+      "model": "RX 350",
+      "year": 2023,
+      "price": "GH\u20b5 510,000",
+      "mileage": "9,200 km",
+      "location": "Airport Hills, Accra",
+      "dealer": "Capitol Auto Sales",
+      "condition": "Brand New",
+      "overview": "Top-spec RX 350 F Sport with 14-inch touchscreen, Mark Levinson 21-speaker audio, head-up display and panoramic roof. The pinnacle of luxury crossovers.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "3.5L V6",
+      "color": "Sonic Titanium",
+      "image": "https://images.unsplash.com/photo-1585390062628-be8608aa7d83?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 8,
+    "fields": {
+      "make": "Audi",
+      "model": "Q5",
+      "year": 2022,
+      "price": "GH\u20b5 470,000",
+      "mileage": "15,700 km",
+      "location": "Airport Hills, Accra",
+      "dealer": "Capitol Auto Sales",
+      "condition": "Foreign Used",
+      "overview": "Audi Q5 S Line with Virtual Cockpit, Matrix LED headlights, adaptive air suspension and Bang & Olufsen sound system. Immaculate inside and out.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L TFSI",
+      "color": "Mythos Black",
+      "image": "https://images.unsplash.com/photo-1606664515524-ed2f786a0bd6?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 9,
+    "fields": {
+      "make": "Volvo",
+      "model": "XC60",
+      "year": 2021,
+      "price": "GH\u20b5 455,000",
+      "mileage": "19,300 km",
+      "location": "Airport Hills, Accra",
+      "dealer": "Capitol Auto Sales",
+      "condition": "Foreign Used",
+      "overview": "Volvo XC60 Inscription with Bowers & Wilkins audio, Pilot Assist semi-autonomous driving, and a stunning Nappa leather cabin. Safety meets luxury.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "2.0L T5 Turbo",
+      "color": "Crystal White Pearl",
+      "image": "https://images.unsplash.com/photo-1544636331-e26879cd4d9b?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 10,
+    "fields": {
+      "make": "BMW",
+      "model": "X5",
+      "year": 2020,
+      "price": "GH\u20b5 380,000",
+      "mileage": "41,000 km",
+      "location": "Labone, Accra",
+      "dealer": "Gold Coast Motors",
+      "condition": "Foreign Used",
+      "overview": "Powerful xDrive40i with panoramic sky lounge roof, Harman Kardon audio, and 7-seat configuration. Great value for a flagship SUV.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "3.0L Inline-6 Turbo",
+      "color": "Carbon Black",
+      "image": "https://images.unsplash.com/photo-1574023240744-64c47c8c0676?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 11,
+    "fields": {
+      "make": "Kia",
+      "model": "Sportage",
+      "year": 2022,
+      "price": "GH\u20b5 195,000",
+      "mileage": "24,600 km",
+      "location": "Labone, Accra",
+      "dealer": "Gold Coast Motors",
+      "condition": "Foreign Used",
+      "overview": "5th-generation Sportage with dual 12.3-inch screens, heated and ventilated seats, and Kia's Drive Wise safety suite. Practical and stylish.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "1.6L Turbo GDi",
+      "color": "Aurora Black Pearl",
+      "image": "https://images.unsplash.com/photo-1744807063315-a7eee4b18c9c?w=600&h=380&fit=crop&auto=format"
+    }
+  },
+  {
+    "model": "catalog.car",
+    "pk": 12,
+    "fields": {
+      "make": "Toyota",
+      "model": "Corolla",
+      "year": 2021,
+      "price": "GH\u20b5 170,000",
+      "mileage": "33,800 km",
+      "location": "Labone, Accra",
+      "dealer": "Gold Coast Motors",
+      "condition": "Ghana Used",
+      "overview": "Reliable single-owner Corolla with full service history at Toyota Ghana. Clean interior, new tyres, and recently serviced. Ideal first car.",
+      "fuel": "Petrol",
+      "transmission": "Automatic",
+      "engine": "1.8L 4-cyl",
+      "color": "Super White",
+      "image": "https://images.unsplash.com/photo-1550355291-bbee04a92027?w=600&h=380&fit=crop&auto=format"
+    }
+  }
+]
