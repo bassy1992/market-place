@@ -21,7 +21,9 @@ User = get_user_model()
 
 @api_view(['GET'])
 def car_list(request):
-    cars = Car.objects.all()
+    # Exclude cars whose dealer is suspended
+    suspended_names = Dealer.objects.filter(suspended=True).values_list('name', flat=True)
+    cars = Car.objects.exclude(dealer__in=suspended_names)
     serializer = CarSerializer(cars, many=True)
     return Response(serializer.data)
 
@@ -30,6 +32,11 @@ def car_list(request):
 @authentication_classes([TokenAuthentication])
 @permission_classes([IsAuthenticated])
 def car_create(request):
+    # Block suspended dealers
+    dealer_profile = Dealer.objects.filter(owner=request.user, suspended=True).first()
+    if dealer_profile:
+        return Response({'detail': 'Your dealer account has been suspended. Contact support.'}, status=status.HTTP_403_FORBIDDEN)
+
     data = request.data.copy()
     data['dealer'] = request.user.get_full_name().strip() or request.user.email or request.user.get_username()
 
@@ -69,6 +76,10 @@ def car_videos(request, car_id):
     if not request.user.is_authenticated:
         return Response({'detail': 'Sign in as the dealer to upload media.'}, status=status.HTTP_401_UNAUTHORIZED)
 
+    # Block suspended dealers from uploading
+    if Dealer.objects.filter(owner=request.user, suspended=True).exists():
+        return Response({'detail': 'Your dealer account has been suspended. Contact support.'}, status=status.HTTP_403_FORBIDDEN)
+
     owner_name = request.user.get_full_name().strip() or request.user.email or request.user.get_username()
     if car.dealer != owner_name and car.dealer not in {request.user.email, request.user.get_username()}:
         return Response({'detail': 'You can only upload media for your own listings.'}, status=status.HTTP_403_FORBIDDEN)
@@ -107,7 +118,7 @@ def vehicle_options(request):
 
 @api_view(['GET'])
 def dealer_list(request):
-    dealers = Dealer.objects.all()
+    dealers = Dealer.objects.filter(suspended=False)
     serializer = DealerSerializer(dealers, many=True)
     return Response(serializer.data)
 
