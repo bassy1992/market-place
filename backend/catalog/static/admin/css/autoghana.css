@@ -23,11 +23,11 @@ body.login #content-main {
 /* Logo image rendered by jazzmin login_logo */
 body.login .login-logo img,
 body.login .navbar-brand img {
-    width: 120px !important;
-    height: 120px !important;
+    width: 72px !important;
+    height: 72px !important;
     object-fit: cover !important;
-    border-radius: 16px !important;
-    box-shadow: 0 8px 32px rgba(192,0,0,0.4) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 4px 16px rgba(192,0,0,0.35) !important;
     display: block;
     margin: 0 auto 8px;
 }
