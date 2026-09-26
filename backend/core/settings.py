@@ -157,9 +157,9 @@ JAZZMIN_SETTINGS = {
     "site_brand": "AutoGhana",
     "site_logo": None,
     "login_logo": None,
-    "site_logo_classes": "img-circle",
+    "site_logo_classes": "img-circle elevation-3",
     "site_icon": None,
-    "welcome_sign": "Welcome to AutoGhana Admin",
+    "welcome_sign": "AutoGhana — Admin Portal",
     "copyright": "AutoGhana © 2026",
 
     # Top menu links
@@ -203,9 +203,9 @@ JAZZMIN_SETTINGS = {
     "default_icon_parents": "fas fa-chevron-circle-right",
     "default_icon_children": "fas fa-circle",
 
-    # UI tweaks
+    # Custom CSS with logo colors & login page branding
     "related_modal_active": True,
-    "custom_css": None,
+    "custom_css": "admin/css/autoghana.css",
     "custom_js": None,
     "use_google_fonts_cdn": True,
     "show_ui_builder": False,
@@ -221,15 +221,15 @@ JAZZMIN_UI_TWEAKS = {
     "footer_small_text": False,
     "body_small_text": False,
     "brand_small_text": False,
-    "brand_colour": "navbar-warning",   # gold accent matches AutoGhana
-    "accent": "accent-warning",
+    "brand_colour": "navbar-danger",    # red from logo
+    "accent": "accent-danger",
     "navbar": "navbar-dark",
     "no_navbar_border": True,
     "navbar_fixed": True,
     "layout_boxed": False,
     "footer_fixed": False,
     "sidebar_fixed": True,
-    "sidebar": "sidebar-dark-warning",
+    "sidebar": "sidebar-dark-danger",   # dark sidebar with red accents
     "sidebar_nav_small_text": False,
     "sidebar_disable_expand": False,
     "sidebar_nav_child_indent": True,
@@ -239,7 +239,7 @@ JAZZMIN_UI_TWEAKS = {
     "theme": "default",
     "dark_mode_theme": None,
     "button_classes": {
-        "primary": "btn-primary",
+        "primary": "btn-danger",
         "secondary": "btn-secondary",
         "info": "btn-info",
         "warning": "btn-warning",
