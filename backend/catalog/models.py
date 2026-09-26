@@ -43,6 +43,7 @@ class Dealer(models.Model):
     specialties = models.JSONField(default=list)
     hours = models.CharField(max_length=150)
     logo = models.URLField(blank=True, default='')
+    suspended = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name

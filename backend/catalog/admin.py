@@ -1,6 +1,7 @@
-from django.contrib import admin
-from django.utils.html import format_html, format_html_join
-from django.urls import reverse
+from django.contrib import admin, messages
+from django.utils.html import format_html
+from django.urls import reverse, path
+from django.shortcuts import get_object_or_404, redirect
 from django.utils.safestring import mark_safe
 from django.db.models import Count
 
@@ -133,7 +134,7 @@ class CarAdmin(admin.ModelAdmin):
 
 
 # ---------------------------------------------------------------------------
-# Dealer admin  —  shows all listings for that dealer inline
+# Dealer admin
 # ---------------------------------------------------------------------------
 
 CONDITION_COLOURS = {
@@ -154,18 +155,24 @@ class DealerAdmin(admin.ModelAdmin):
         'email',
         'rating',
         'verified_badge',
+        'dealer_status_badge',
         'listing_count',
-        'response',
+        'suspend_toggle',
     )
     list_display_links = ('logo_thumbnail', 'name')
-    list_filter = ('verified', 'location')
+    list_filter = ('verified', 'suspended', 'location')
     search_fields = ('name', 'email', 'phone', 'location', 'owner__email', 'owner__username')
     ordering = ('-id',)
-    readonly_fields = ('logo_preview', 'owner_link', 'listings_panel')
+    readonly_fields = ('logo_preview', 'owner_link', 'listings_panel', 'suspend_action_button')
+    actions = ['action_suspend', 'action_unsuspend']
 
     fieldsets = (
         ('Dealer Identity', {
             'fields': ('name', 'initials', 'color', 'owner_link', 'verified'),
+        }),
+        ('Account Status', {
+            'fields': ('suspended', 'suspend_action_button'),
+            'description': 'Suspending a dealer hides all their listings from the public site.',
         }),
         ('Contact', {
             'fields': ('phone', 'email', 'location', 'hours', 'response'),
@@ -183,25 +190,65 @@ class DealerAdmin(admin.ModelAdmin):
     )
 
     # ------------------------------------------------------------------
-    # List-view helpers
+    # Custom URL for the one-click toggle
     # ------------------------------------------------------------------
 
-    def get_queryset(self, request):
-        qs = super().get_queryset(request)
-        return qs.annotate(_listing_count=Count('owner__id', distinct=False))
+    def get_urls(self):
+        urls = super().get_urls()
+        custom = [
+            path(
+                '<int:dealer_id>/toggle-suspend/',
+                self.admin_site.admin_view(self.toggle_suspend_view),
+                name='catalog_dealer_toggle_suspend',
+            ),
+        ]
+        return custom + urls
+
+    def toggle_suspend_view(self, request, dealer_id):
+        dealer = get_object_or_404(Dealer, pk=dealer_id)
+        dealer.suspended = not dealer.suspended
+        dealer.save(update_fields=['suspended'])
+        state = 'suspended' if dealer.suspended else 'reactivated'
+        self.message_user(
+            request,
+            f'"{dealer.name}" has been {state}.',
+            level=messages.WARNING if dealer.suspended else messages.SUCCESS,
+        )
+        return redirect(reverse('admin:catalog_dealer_change', args=[dealer_id]))
+
+    # ------------------------------------------------------------------
+    # Bulk actions
+    # ------------------------------------------------------------------
+
+    @admin.action(description='🚫  Suspend selected dealers')
+    def action_suspend(self, request, queryset):
+        updated = queryset.exclude(suspended=True).update(suspended=True)
+        self.message_user(request, f'{updated} dealer(s) suspended.', messages.WARNING)
+
+    @admin.action(description='✅  Reactivate selected dealers')
+    def action_unsuspend(self, request, queryset):
+        updated = queryset.filter(suspended=True).update(suspended=False)
+        self.message_user(request, f'{updated} dealer(s) reactivated.', messages.SUCCESS)
+
+    # ------------------------------------------------------------------
+    # List-view columns
+    # ------------------------------------------------------------------
 
     def logo_thumbnail(self, obj):
         if obj.logo:
             return format_html(
                 '<img src="{}" width="44" height="44" '
-                'style="object-fit:cover;border-radius:8px;border:1px solid #e5e7eb" />',
+                'style="object-fit:cover;border-radius:8px;border:1px solid #e5e7eb;'
+                'opacity:{}" />',
                 obj.logo,
+                '0.45' if obj.suspended else '1',
             )
         return format_html(
             '<div style="width:44px;height:44px;border-radius:8px;background:{};'
             'display:flex;align-items:center;justify-content:center;'
-            'color:#fff;font-weight:700;font-size:13px">{}</div>',
+            'color:#fff;font-weight:700;font-size:13px;opacity:{}">{}</div>',
             obj.color or '#0d1b2a',
+            '0.45' if obj.suspended else '1',
             obj.initials or '??',
         )
     logo_thumbnail.short_description = ''
@@ -216,8 +263,39 @@ class DealerAdmin(admin.ModelAdmin):
             '<span style="background:#f3f4f6;color:#6b7280;padding:2px 10px;'
             'border-radius:999px;font-size:11px;font-weight:600">Unverified</span>'
         )
-    verified_badge.short_description = 'Status'
+    verified_badge.short_description = 'Verified'
     verified_badge.admin_order_field = 'verified'
+
+    def dealer_status_badge(self, obj):
+        if obj.suspended:
+            return format_html(
+                '<span style="background:#fee2e2;color:#b91c1c;padding:2px 10px;'
+                'border-radius:999px;font-size:11px;font-weight:600">🚫 Suspended</span>'
+            )
+        return format_html(
+            '<span style="background:#dcfce7;color:#15803d;padding:2px 10px;'
+            'border-radius:999px;font-size:11px;font-weight:600">● Active</span>'
+        )
+    dealer_status_badge.short_description = 'Status'
+    dealer_status_badge.admin_order_field = 'suspended'
+
+    def suspend_toggle(self, obj):
+        """One-click suspend / unsuspend button in the list view."""
+        url = reverse('admin:catalog_dealer_toggle_suspend', args=[obj.pk])
+        if obj.suspended:
+            return format_html(
+                '<a href="{}" style="background:#dcfce7;color:#15803d;padding:4px 12px;'
+                'border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;'
+                'white-space:nowrap">✅ Reactivate</a>',
+                url,
+            )
+        return format_html(
+            '<a href="{}" style="background:#fee2e2;color:#b91c1c;padding:4px 12px;'
+            'border-radius:6px;font-size:11px;font-weight:600;text-decoration:none;'
+            'white-space:nowrap">🚫 Suspend</a>',
+            url,
+        )
+    suspend_toggle.short_description = 'Action'
 
     def owner_email(self, obj):
         if obj.owner:
@@ -235,13 +313,11 @@ class DealerAdmin(admin.ModelAdmin):
                 '{} listing{}</a>',
                 url, count, 's' if count != 1 else '',
             )
-        return format_html(
-            '<span style="color:#9ca3af;font-size:12px">No listings</span>'
-        )
+        return format_html('<span style="color:#9ca3af;font-size:12px">No listings</span>')
     listing_count.short_description = 'Listings'
 
     # ------------------------------------------------------------------
-    # Detail-view helpers
+    # Detail-view fields
     # ------------------------------------------------------------------
 
     def owner_link(self, obj):
@@ -261,8 +337,31 @@ class DealerAdmin(admin.ModelAdmin):
         return '—'
     logo_preview.short_description = 'Logo preview'
 
+    def suspend_action_button(self, obj):
+        """Large prominent button on the detail page."""
+        if not obj.pk:
+            return '—'
+        url = reverse('admin:catalog_dealer_toggle_suspend', args=[obj.pk])
+        if obj.suspended:
+            return format_html(
+                '<a href="{}" style="display:inline-block;background:#16a34a;color:#fff;'
+                'padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;'
+                'text-decoration:none;letter-spacing:.3px">✅ Reactivate this dealer</a>'
+                '<p style="margin-top:8px;font-size:12px;color:#b91c1c">'
+                '⚠ This dealer is currently suspended. Their listings are hidden from the public site.</p>',
+                url,
+            )
+        return format_html(
+            '<a href="{}" style="display:inline-block;background:#dc2626;color:#fff;'
+            'padding:10px 24px;border-radius:8px;font-size:13px;font-weight:700;'
+            'text-decoration:none;letter-spacing:.3px">🚫 Suspend this dealer</a>'
+            '<p style="margin-top:8px;font-size:12px;color:#6b7280">'
+            'Suspending will hide all listings from this dealer on the public site.</p>',
+            url,
+        )
+    suspend_action_button.short_description = 'Suspend / Reactivate'
+
     def listings_panel(self, obj):
-        """Renders a full table of all cars listed under this dealer's name."""
         cars = Car.objects.filter(dealer=obj.name).order_by('-id')
         if not cars.exists():
             return format_html(
@@ -271,7 +370,6 @@ class DealerAdmin(admin.ModelAdmin):
             )
 
         view_all_url = reverse('admin:catalog_car_changelist') + f'?dealer={obj.name}'
-
         rows = []
         for car in cars:
             edit_url = reverse('admin:catalog_car_change', args=[car.pk])
@@ -322,24 +420,22 @@ class DealerAdmin(admin.ModelAdmin):
             '</tr>'
         )
 
-        table = format_html(
+        return format_html(
             '<div style="overflow-x:auto">'
             '<table style="width:100%;border-collapse:collapse;font-size:13px">'
             '<thead>{}</thead>'
             '<tbody>{}</tbody>'
             '</table>'
             '<p style="margin-top:8px">'
-            '<a href="{}" style="font-size:12px;color:#1d4ed8">→ View all {} listing{} in car admin</a>'
-            '</p>'
-            '</div>',
+            '<a href="{}" style="font-size:12px;color:#1d4ed8">'
+            '→ View all {} listing{} in car admin</a>'
+            '</p></div>',
             header,
             mark_safe(''.join(str(r) for r in rows)),
             view_all_url,
             cars.count(),
             's' if cars.count() != 1 else '',
         )
-        return table
-
     listings_panel.short_description = 'All Listings'
 
 
