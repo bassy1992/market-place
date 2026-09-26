@@ -1515,11 +1515,9 @@ export default function App() {
         if (!carsResponse.ok || !dealersResponse.ok) throw new Error('Catalog request failed')
 
         const [apiCars, apiDealers] = (await Promise.all([carsResponse.json(), dealersResponse.json()])) as [Car[], Omit<Dealer, 'inventory'>[]]
-        if (!apiCars.length && !apiDealers.length) return
 
-        if (apiCars.length) setCars(apiCars)
-        if (apiDealers.length) {
-          setDealers(apiDealers.map(dealer => ({
+        setCars(apiCars)
+        setDealers(apiDealers.map(dealer => ({
             ...dealer,
             inventory: apiCars
               .filter(car => car.dealer === dealer.name)
@@ -1531,7 +1529,6 @@ export default function App() {
                 status: car.condition,
               })),
           })))
-        }
       } catch {
       }
     }
